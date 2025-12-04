@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Employee | Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 flex items-center justify-center text-slate-100">
+
+  <div class="w-full max-w-md px-4">
+    <div class="mb-5">
+      <h1 class="text-xl font-semibold tracking-tight">Add Employee</h1>
+      <p class="text-xs text-slate-400">Send data to <span class="text-blue-400">/api/Employee</span></p>
+    </div>
+
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl shadow-xl shadow-black/40 p-5">
+      <form class="space-y-4" onsubmit="event.preventDefault(); fetchdata();">
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Name</label>
+          <input name="name"
+                 class="w-full rounded-lg bg-slate-950/70 border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Email</label>
+          <input name="email" type="email"
+                 class="w-full rounded-lg bg-slate-950/70 border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Department ID</label>
+          <input name="departmentId"
+                 class="w-full rounded-lg bg-slate-950/70 border border-slate-700 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+        </div>
+
+        <button type="button" onclick="fetchdata()"
+                class="w-full mt-2 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2.5 text-sm font-medium shadow-lg shadow-blue-500/30 hover:from-blue-400 hover:to-indigo-400 active:scale-[0.98] transition">
+          Send Form Data
+        </button>
+      </form>
+
+      <div class="mt-4">
+        <p class="text-[11px] text-slate-400 mb-1">API Response</p>
+        <pre id="p"
+             class="text-xs bg-slate-950/80 border border-slate-800 rounded-lg p-3 text-slate-300 overflow-x-auto min-h-[52px]">
+Waiting for response...</pre>
+      </div>
+
+      <!-- EXTRA BUTTONS -->
+      <div class="mt-6 border-t border-slate-800 pt-4 flex flex-col gap-3">
+
+        <a href="Landingpage.html"
+           class="w-full inline-flex items-center justify-center rounded-lg bg-slate-800/70 border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800 transition">
+          ← Back to Dashboard
+        </a>
+
+        <a href="Getallemployees.html"
+           class="w-full inline-flex items-center justify-center rounded-lg bg-blue-600/90 px-4 py-2 text-sm font-medium shadow-lg shadow-blue-500/30 hover:bg-blue-500 active:scale-[0.98] transition">
+          View All Employees
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    fetchdata = async function () {
+      var form = document.querySelector('form');
+      var object = {};
+      form = new FormData(form);
+
+      form.forEach(function (value, key) {
+        object[key] = value;
+      });
+
+      var json = JSON.stringify(object);
+
+      let response = await fetch("https://localhost:7208/api/Employee", {
+        method: "post",
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: json
+      });
+
+      if (response.ok) {
+        let x = await response.json();
+        document.getElementById('p').textContent = JSON.stringify(x, null, 2);
+      } else {
+        alert("HTTP-Error: " + response.status);
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>The XMLHttpRequest Object</h2>
+    <p id="demo"></p>
+    <form>
+        <label>Name</label><input name="name" />
+        <label>email</label><input name="email" />
+        <label>Department</label><input name="departmentId" />
+        <button type="button" onclick="fetchdata();">Send Form data </button>
+    </form>
+    <p id="p"></p>
+    <script>
+        fetchdata = async function () {
+            var form = document.querySelector('form');
+            var object = {};
+            form = new FormData(form);
+            console.log(form)
+            form.forEach(function (value, key) {
+                object[key] = value;//  name="vita", email="vita@gmail.com", dept="HR"
+            });
+            var json = JSON.stringify(object);
+            console.log(json);
+            let response = await fetch("https://localhost:7208/api/Employee",
+                {
+                    method: "post",
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: json
+                }
+            );
+            if (response.ok) {  //  if  HTTP-status  is  200-299
+                let x = await response.json();
+                document.getElementById('p').innerHTML = JSON.stringify(x);
+            }
+
+            else
+                alert("HTTP-Error:  " + response.status);
+
+        }
+
+    </script>
+</body> -->

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
+  <div class="w-full max-w-4xl px-4">
+    
+    <!-- Top bar -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-xl font-semibold tracking-tight">Employee Admin</h1>
+        <p class="text-xs text-slate-400">Manage employee records quickly and cleanly.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-14 h-9 rounded-full bg-gradient-to-tr from-blue-500 to-violet-500 flex items-center justify-center text-xs font-semibold">
+          Admin
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard card -->
+    <div class="bg-slate-900/60 border border-slate-800 rounded-2xl shadow-xl shadow-black/40 p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-medium text-slate-200">Quick Actions</h2>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        <a href="Getallemployees.html" class="group">
+          <div class="h-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 flex flex-col justify-between gap-1 hover:border-blue-500/70 hover:bg-slate-900/90 transition-all duration-150">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-medium">Get All Employees</p>
+              <span class="text-xs opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-transform">→</span>
+            </div>
+            <p class="text-[11px] text-slate-400">View the complete employee list.</p>
+          </div>
+        </a>
+
+        <a href="Getbyid.html" class="group">
+          <div class="h-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 flex flex-col justify-between gap-1 hover:border-blue-500/70 hover:bg-slate-900/90 transition-all duration-150">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-medium">Employee by ID</p>
+              <span class="text-xs opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-transform">#</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Fetch details using employee ID.</p>
+          </div>
+        </a>
+
+        <a href="addemployee.html" class="group">
+          <div class="h-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 flex flex-col justify-between gap-1 hover:border-emerald-500/70 hover:bg-slate-900/90 transition-all duration-150">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-medium">Add Employee</p>
+              <span class="text-xs opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-transform">+</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Create a new employee record.</p>
+          </div>
+        </a>
+
+        <a href="UpdateEmployee.html" class="group">
+          <div class="h-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 flex flex-col justify-between gap-1 hover:border-amber-400/70 hover:bg-slate-900/90 transition-all duration-150">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-medium">Update Employee</p>
+              <span class="text-xs opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-transform">✎</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Edit existing employee details.</p>
+          </div>
+        </a>
+
+        <a href="deleteemp.html" class="group sm:col-span-2">
+          <div class="h-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 flex flex-col justify-between gap-1 hover:border-rose-500/80 hover:bg-slate-900/90 transition-all duration-150">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-medium text-rose-300">Delete Employee</p>
+              <span class="text-xs opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-transform">🗑</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Remove an employee permanently.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    get all Employees<a href="Getallemployees.html"><button>Getallemployees</button></a><hr>
+    Employee details by id <a href="Getbyid.html"><button>Getbyid</button></a><hr>
+    add employee <a href="addemployee.html"><button>addemployee</button></a><hr>
+    update employees <a href="UpdateEmployee.html"><button>UpdateEmployee</button></a><hr>
+    delete employees <a href="deleteemp.html"><button>deleteemployee</button></a><hr>
+</body>
+</html> -->

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fetch Employee | Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-950 flex items-center justify-center text-slate-100">
+
+  <div class="w-full max-w-md px-4">
+
+    <div class="mb-5">
+      <h1 class="text-xl font-semibold tracking-tight text-blue-300">Fetch Employee</h1>
+      <p class="text-xs text-slate-400">Enter an employee ID to retrieve records.</p>
+    </div>
+
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl shadow-xl shadow-black/40 p-5">
+
+      <input id="empId" type="number" 
+             placeholder="Enter Employee ID"
+             class="w-full rounded-lg bg-slate-950/70 border border-slate-700 px-3 py-2 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+
+      <button onclick="fetchdata()"
+              class="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2.5 text-sm font-medium shadow-lg shadow-blue-500/30 hover:from-blue-400 hover:to-indigo-400 active:scale-[0.98] transition">
+        Get Employee
+      </button>
+
+      <div class="mt-5">
+        <p class="text-[11px] text-slate-400 mb-1">Employee Data</p>
+        <pre id="p"
+             class="text-xs bg-slate-950/80 border border-slate-800 rounded-lg p-3 text-slate-300 overflow-x-auto min-h-[52px]">
+Waiting for employee data...</pre>
+      </div>
+
+      <!-- EXTRA BUTTONS -->
+      <div class="mt-6 border-t border-slate-800 pt-4 flex flex-col gap-3">
+
+        <a href="Landingpage.html"
+           class="w-full inline-flex items-center justify-center rounded-lg bg-slate-800/70 border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800 transition">
+          ← Back to Dashboard
+        </a>
+
+        <a href="Getallemployees.html"
+           class="w-full inline-flex items-center justify-center rounded-lg bg-blue-600/90 px-4 py-2 text-sm font-medium shadow-lg shadow-blue-500/30 hover:bg-blue-500 active:scale-[0.98] transition">
+          View All Employees
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+fetchdata = async function () {
+  let id = document.getElementById("empId").value;
+
+  if (id === "") {
+      document.getElementById('p').textContent = "⚠️ Please enter an ID first";
+      document.getElementById('p').className = "text-xs bg-slate-950/80 border border-yellow-500/70 rounded-lg p-3 text-yellow-300";
+      return;
+  }
+
+  let response = await fetch(`https://localhost:7208/api/Employee/${id}`);
+
+  if (response.ok) {
+      let x = await response.json();
+      let output = "";
+      for (let key in x)
+          output += `${key}: ${x[key]}\n`;
+      
+      document.getElementById('p').textContent = output;
+      document.getElementById('p').className = "text-xs bg-slate-950/80 border border-slate-800 rounded-lg p-3 text-slate-300";
+  }
+  else {
+      document.getElementById('p').textContent = `❗ HTTP Error: ${response.status}`;
+      document.getElementById('p').className = "text-xs bg-slate-950/80 border border-rose-600 rounded-lg p-3 text-rose-400";
+  }
+}
+</script>
+
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Employee</title>
+</head>
+<body>
+    
+    <input type="number" id="empId" placeholder="Enter Employee ID">
+    <button onclick="fetchdata()">Get Employee</button>
+    <p id="p"></p>
+
+<script>
+    fetchdata = async function () {
+        let id = document.getElementById("empId").value;
+
+        if(id === ""){
+            alert("Please enter an ID first");
+            return;
+        }
+
+        let response = await fetch(`https://localhost:7208/api/Employee/${id}`);
+
+        if (response.ok) {
+            let x = await response.json();
+            let fd = "";
+
+            for (let b in x) {
+                console.log(x[b])
+                fd += b + " : " + x[b] + "<br/>";
+            }
+
+            document.getElementById('p').innerHTML = fd;
+        }
+        else {
+            alert("HTTP Error: " + response.status);
+        }
+    }
+</script>
+
+</body>
+</html> -->

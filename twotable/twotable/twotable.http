@@ -1,0 +1,6 @@
+@twotable_HostAddress = http://localhost:5062
+
+GET {{twotable_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
